@@ -1,0 +1,15 @@
+<resources>
+    <!-- Base theme — overridden by Compose -->
+    <style name="Theme.Savery" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- Splash screen theme -->
+    <style name="Theme.Savery.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#0A0A0A</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_savery_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.Savery</item>
+    </style>
+</resources>

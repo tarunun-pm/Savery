@@ -1,0 +1,336 @@
+/* ── Insights View ── */
+
+.screen {
+  padding: 20px 20px 32px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-top: 8px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* ── AI Section ── */
+.aiSection {
+  margin-bottom: 20px;
+}
+
+.generatingBanner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--lime-glow);
+  border: 1px solid var(--lime-muted);
+  border-radius: var(--radius-xl);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--dark-soft);
+}
+
+.generatingDots {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.generatingDots span {
+  width: 6px;
+  height: 6px;
+  background: var(--lime-deep);
+  border-radius: 50%;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+.generatingDots span:nth-child(2) { animation-delay: 0.2s; }
+.generatingDots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.6; }
+  40% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Money Story Card ── */
+.storyCard {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.storyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--lime-primary), var(--lime-deep));
+}
+
+.storyHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.storyEmoji {
+  font-size: 22px;
+}
+
+.storyTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.storyBadge {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--lime-deep);
+  background: rgba(200, 241, 0, 0.25);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  margin-left: auto;
+}
+
+.storyBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.storyItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.storyItemEmoji {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.storyItemText {
+  font-size: 14px;
+  color: var(--dark-soft);
+  line-height: 1.5;
+}
+
+.storyItemAccent {
+  font-weight: 700;
+  color: var(--lime-deep);
+}
+
+.storyItemWarn {
+  font-weight: 600;
+  color: #F59E0B;
+}
+
+/* ── Patterns Card ── */
+.patternCard {
+  background: var(--surface-1);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+/* Spending heatmap */
+.heatmapGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.heatmapLabel {
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-muted);
+  padding-bottom: 4px;
+}
+
+.heatmapCell {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition-fast);
+}
+
+.heatmapCell:hover {
+  transform: scale(1.15);
+}
+
+.heatmapLegend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.heatmapLegendLabel {
+  font-size: 10px;
+  color: var(--gray-light);
+}
+
+.heatmapLegendBlock {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* ── Trend Bars ── */
+.trendCard {
+  background: var(--surface-1);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.trendBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  padding-top: 8px;
+}
+
+.trendBarWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.trendBar {
+  width: 100%;
+  max-width: 28px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height var(--transition-base);
+}
+
+.trendBarLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gray-muted);
+}
+
+.trendBarAmount {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* ── Leak Detection ── */
+.leakCard {
+  background: var(--surface-1);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-left: 4px solid #F59E0B;
+  margin-bottom: 20px;
+}
+
+.leakHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.leakEmoji {
+  font-size: 18px;
+}
+
+.leakTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.leakSavings {
+  font-size: 12px;
+  font-weight: 700;
+  color: #F59E0B;
+  background: #FEF3C7;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  margin-left: auto;
+}
+
+.leakList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leakItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface-2);
+  border-radius: var(--radius-md);
+}
+
+.leakItemIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.leakItemInfo {
+  flex: 1;
+}
+
+.leakItemName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.leakItemMeta {
+  font-size: 12px;
+  color: var(--gray-muted);
+  margin-top: 2px;
+}
+
+.leakItemAmount {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+  flex-shrink: 0;
+}

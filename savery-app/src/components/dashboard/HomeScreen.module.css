@@ -1,0 +1,437 @@
+/* ── Dashboard Home Screen (Dark Mode) ── */
+
+.screen {
+  padding: 24px 20px 40px;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  padding-top: 12px;
+}
+
+.greetingBlock {}
+
+.greeting {
+  font-size: 13px;
+  color: var(--gray-muted);
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-top: 2px;
+  letter-spacing: -0.02em;
+}
+
+.headerActions {
+  display: flex;
+  gap: 8px;
+}
+
+.iconBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--off-white);
+  border: 1px solid var(--gray-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-muted);
+  transition: all var(--transition-fast);
+}
+
+.iconBtn:hover {
+  border-color: var(--lime-primary);
+  color: var(--lime-primary);
+  box-shadow: 0 0 12px rgba(200, 241, 0, 0.15);
+}
+
+.iconBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Safe-to-Spend Card ── */
+.safeCard {
+  background: var(--off-white);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-border);
+  padding: 32px 28px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle lime glow in top-right corner */
+.safeCard::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 241, 0, 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.safeCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--lime-primary), var(--lime-deep));
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+}
+
+.safeLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.safeAmount {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -0.03em;
+}
+
+.safeAmountGreen {
+  color: var(--lime-primary);
+  text-shadow: 0 0 32px rgba(200, 241, 0, 0.25);
+}
+
+.safeAmountYellow {
+  color: #F59E0B;
+}
+
+.safeAmountRed {
+  color: var(--error);
+}
+
+.safeSubtext {
+  font-size: 13px;
+  color: var(--gray-muted);
+  line-height: 1.5;
+}
+
+/* ── Month Snapshot ── */
+.snapshotCard {
+  background: var(--off-white);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-border);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.bucketBar {
+  display: flex;
+  height: 10px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-bottom: 18px;
+  gap: 2px;
+  background: var(--surface);
+}
+
+.bucketSegment {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-base);
+}
+
+.bucketLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-size: 12px;
+  color: var(--gray-muted);
+}
+
+.legendAmount {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-left: 2px;
+}
+
+/* ── Quick Actions ── */
+.quickActions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.quickAction {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 8px;
+  background: var(--off-white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--gray-border);
+  transition: all var(--transition-base);
+}
+
+.quickAction:hover {
+  border-color: var(--lime-primary);
+  box-shadow: 0 0 16px rgba(200, 241, 0, 0.10);
+  transform: translateY(-2px);
+}
+
+.quickAction:active {
+  transform: translateY(0) scale(0.96);
+}
+
+/* SVG icon container — circular dark pill with lime icon */
+.quickActionIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--gray-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lime-primary);
+  transition: all var(--transition-fast);
+}
+
+.quickAction:hover .quickActionIcon {
+  background: rgba(200, 241, 0, 0.08);
+  border-color: var(--lime-primary);
+}
+
+.quickActionIcon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.quickActionLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--dark-soft);
+  text-align: center;
+  line-height: 1.3;
+  letter-spacing: 0.1px;
+}
+
+/* ── Featured Insight ── */
+.insightCard {
+  background: var(--off-white);
+  border: 1px solid rgba(200, 241, 0, 0.2);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.insightCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at top right, rgba(200, 241, 0, 0.04), transparent 70%);
+  pointer-events: none;
+}
+
+.insightHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.insightBadge {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--lime-primary);
+  background: rgba(200, 241, 0, 0.10);
+  border: 1px solid rgba(200, 241, 0, 0.2);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* SVG insight icon */
+.insightIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(200, 241, 0, 0.08);
+  border: 1px solid rgba(200, 241, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lime-primary);
+  flex-shrink: 0;
+}
+
+.insightIcon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.insightText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-soft);
+  line-height: 1.6;
+}
+
+.insightAccent {
+  font-weight: 700;
+  color: var(--lime-primary);
+}
+
+/* ── Recent Transactions ── */
+.recentSection {
+  background: var(--off-white);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--gray-border);
+  padding: 24px;
+}
+
+.recentHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.viewAllBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--lime-primary);
+  background: rgba(200, 241, 0, 0.08);
+  border: 1px solid rgba(200, 241, 0, 0.2);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.viewAllBtn:hover {
+  background: rgba(200, 241, 0, 0.15);
+}
+
+.txnList {
+  display: flex;
+  flex-direction: column;
+}
+
+.txnItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-border);
+  transition: opacity var(--transition-fast);
+}
+
+.txnItem:last-child {
+  border-bottom: none;
+}
+
+.txnItem:hover {
+  opacity: 0.85;
+}
+
+.txnIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--gray-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.txnInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.txnMerchant {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.txnCategory {
+  font-size: 11px;
+  color: var(--gray-muted);
+  margin-top: 2px;
+  letter-spacing: 0.1px;
+}
+
+.txnRight {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.txnAmount {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.txnDate {
+  font-size: 11px;
+  color: var(--gray-muted);
+  margin-top: 2px;
+}

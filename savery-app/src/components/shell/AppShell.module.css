@@ -1,0 +1,96 @@
+/* ── App Shell — Bottom Navigation ── */
+
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.content {
+  flex: 1;
+  padding-bottom: 84px;
+  overflow-y: auto;
+}
+
+/* ── Bottom Nav ── */
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 76px;
+  background: var(--surface-1);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px;
+  z-index: 100;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+  position: relative;
+  min-width: 60px;
+}
+
+.navItem:active {
+  transform: scale(0.90);
+}
+
+.navIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--text-disabled);
+  transition: color var(--transition-base);
+}
+
+.navLabel {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-disabled);
+  letter-spacing: 0.3px;
+  transition: color var(--transition-base);
+}
+
+/* Active state */
+.navItemActive .navIcon {
+  color: var(--lime-primary);
+}
+
+.navItemActive .navLabel {
+  color: var(--lime-primary);
+}
+
+/* Active lime dot indicator above icon */
+.navItemActive::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: var(--lime-primary);
+  border-radius: 0 0 var(--radius-full) var(--radius-full);
+  box-shadow: 0 0 10px rgba(200, 241, 0, 0.5);
+}
+
+/* Safe area for iOS */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .bottomNav {
+    padding-bottom: env(safe-area-inset-bottom);
+    height: calc(76px + env(safe-area-inset-bottom));
+  }
+  .content {
+    padding-bottom: calc(84px + env(safe-area-inset-bottom));
+  }
+}

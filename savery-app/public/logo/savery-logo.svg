@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 150" width="100%" height="100%">
+  <defs>
+    <mask id="wedgeMask">
+      <rect x="-60" y="-60" width="120" height="120" fill="white" />
+      <!-- Small seed cutout -->
+      <circle cx="24" cy="0" r="2.5" fill="black" />
+    </mask>
+    <g id="wedge">
+      <!-- Rounded wedge path -->
+      <path d="M 12 4.5 L 39 14.5 A 41 41 0 0 1 39 -14.5 L 12 -4.5 A 12 12 0 0 0 12 4.5 Z" 
+            fill="#A3E600" stroke="#A3E600" stroke-width="4" stroke-linejoin="round"
+            mask="url(#wedgeMask)" />
+    </g>
+  </defs>
+
+  <!-- Lime Icon -->
+  <g transform="translate(75, 75)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="52" fill="none" stroke="#A3E600" stroke-width="7" />
+    
+    <!-- 8 rotated wedges creating the cross gaps -->
+    <use href="#wedge" transform="rotate(22.5)" />
+    <use href="#wedge" transform="rotate(67.5)" />
+    <use href="#wedge" transform="rotate(112.5)" />
+    <use href="#wedge" transform="rotate(157.5)" />
+    <use href="#wedge" transform="rotate(202.5)" />
+    <use href="#wedge" transform="rotate(247.5)" />
+    <use href="#wedge" transform="rotate(292.5)" />
+    <use href="#wedge" transform="rotate(337.5)" />
+  </g>
+
+  <!-- Brand Text -->
+  <text x="155" y="103" font-family="'Montserrat', 'Proxima Nova', 'Poppins', 'Helvetica Neue', sans-serif" font-weight="700" font-size="84" fill="#A3E600" letter-spacing="-1.5">savery</text>
+</svg>

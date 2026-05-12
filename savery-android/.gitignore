@@ -1,0 +1,26 @@
+# Savery Android
+
+# Key files — never commit
+local.properties
+*.jks
+*.keystore
+google-services.json
+.env
+
+# Gradle
+.gradle/
+build/
+*.hprof
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+captures/
+.externalNativeBuild/
+.cxx/
+
+# OS
+.DS_Store
+Thumbs.db

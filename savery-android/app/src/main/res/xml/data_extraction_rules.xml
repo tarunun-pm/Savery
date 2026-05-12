@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    FIX #6: data_extraction_rules.xml
+    Required on Android 12+ (API 31+) as the modern replacement for allowBackup.
+    Defines what data is included/excluded from cloud and device-to-device transfers.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Exclude all app data from Google cloud backup (financial data — privacy first) -->
+        <exclude domain="root" />
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="external" />
+    </cloud-backup>
+    <device-transfer>
+        <!-- Allow preferences (theme setting) on device transfer, exclude all else -->
+        <include domain="sharedpref" path="savery_settings.preferences_pb" />
+        <exclude domain="root" />
+        <exclude domain="database" />
+    </device-transfer>
+</data-extraction-rules>
