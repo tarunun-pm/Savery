@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { supabase } from "@/lib/supabase";
 import { buildMonthSnapshot, formatINR, topCategories } from "@/lib/helpers";
-import { demoTransactions, demoCommitments } from "@/lib/demoData";
 import styles from "./LemonChat.module.css";
 
 interface Message {
@@ -59,9 +58,9 @@ export default function LemonChat() {
         supabase.from("transactions").select("*").eq("user_id", uid).order("date", { ascending: false }),
       ]);
 
-      const income = profileRes.data?.monthly_income || 105000;
-      const commitments = commitRes.data || demoCommitments;
-      const transactions = txnRes.data && txnRes.data.length > 0 ? txnRes.data : demoTransactions;
+      const income = profileRes.data?.monthly_income || 0;
+      const commitments = commitRes.data || [];
+      const transactions = txnRes.data ?? [];
 
       const snapshot = buildMonthSnapshot(income, commitments, transactions);
       const top3 = topCategories(snapshot.categories, 3)

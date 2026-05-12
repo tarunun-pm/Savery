@@ -4,7 +4,6 @@ import { useMemo, useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import styles from "./HomeScreen.module.css";
-import { demoTransactions, demoCommitments } from "@/lib/demoData";
 import {
   buildMonthSnapshot,
   formatINR,
@@ -50,7 +49,7 @@ export default function HomeScreen() {
 
       if (profileRes.data) setProfile(profileRes.data);
       if (commitRes.data) setCommitments(commitRes.data);
-      setTransactions(txnRes.data && txnRes.data.length > 0 ? txnRes.data : demoTransactions);
+      setTransactions(txnRes.data ?? []);
     } catch (err) {
       console.error("Error loading dashboard data:", err);
     } finally {
@@ -62,8 +61,8 @@ export default function HomeScreen() {
     loadData();
   }, [loadData]);
 
-  const income = profile?.monthly_income || 105000;
-  const activeCommitments = commitments.length > 0 ? commitments : demoCommitments;
+  const income = profile?.monthly_income || 0;
+  const activeCommitments = commitments;
 
   const snapshot = useMemo(
     () => buildMonthSnapshot(income, activeCommitments, transactions),
@@ -260,19 +259,27 @@ export default function HomeScreen() {
           </button>
         </div>
         <div className={styles.txnList}>
-          {recentTxns.map((t) => (
-            <div key={t.id} className={styles.txnItem}>
-              <div className={styles.txnIcon}>{getCategoryIcon(t.category)}</div>
-              <div className={styles.txnInfo}>
-                <p className={styles.txnMerchant}>{t.merchant}</p>
-                <p className={styles.txnCategory}>{t.sub_category}</p>
-              </div>
-              <div className={styles.txnRight}>
-                <p className={styles.txnAmount}>-{formatINR(t.amount)}</p>
-                <p className={styles.txnDate}>{formatDate(t.date)}</p>
-              </div>
+          {recentTxns.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '32px 16px', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '2rem', marginBottom: 8 }}>📭</p>
+              <p style={{ fontSize: '0.9rem', fontWeight: 500 }}>No transactions yet</p>
+              <p style={{ fontSize: '0.8rem', marginTop: 4, opacity: 0.7 }}>Import a CSV bank statement or log a cash expense to get started.</p>
             </div>
-          ))}
+          ) : (
+            recentTxns.map((t) => (
+              <div key={t.id} className={styles.txnItem}>
+                <div className={styles.txnIcon}>{getCategoryIcon(t.category)}</div>
+                <div className={styles.txnInfo}>
+                  <p className={styles.txnMerchant}>{t.merchant}</p>
+                  <p className={styles.txnCategory}>{t.sub_category}</p>
+                </div>
+                <div className={styles.txnRight}>
+                  <p className={styles.txnAmount}>-{formatINR(t.amount)}</p>
+                  <p className={styles.txnDate}>{formatDate(t.date)}</p>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
       {/* Modals */}

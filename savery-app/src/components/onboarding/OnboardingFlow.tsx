@@ -5,9 +5,8 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import styles from "./OnboardingFlow.module.css";
 import type { Persona, Commitment } from "@/lib/types";
-import { demoTransactions } from "@/lib/demoData";
 
-type DataSource = "csv" | "demo" | null;
+type DataSource = "csv" | "skip" | null;
 
 const DEFAULT_COMMITMENTS: Commitment[] = [
   { label: "Rent", amount: 0, category: "Bills & Utilities" },
@@ -92,24 +91,7 @@ export default function OnboardingFlow() {
         if (commitError) throw commitError;
       }
 
-      // 3. Save Demo Transactions (if selected)
-      if (dataSource === "demo") {
-        const userTransactions = demoTransactions.map((t) => {
-          // Remove the hardcoded 't1' etc id from demo data so Postgres generates a fresh UUID,
-          // or just omit the id field altogether using destructuring.
-          const { id, ...rest } = t;
-          return {
-            ...rest,
-            user_id: userId,
-          };
-        });
-
-        const { error: txError } = await supabase
-          .from("transactions")
-          .insert(userTransactions);
-
-        if (txError) throw txError;
-      }
+      // 3. No demo data is seeded — user starts fresh and adds real data via CSV or manual entry
 
       router.push("/dashboard");
     } catch (err) {
@@ -259,20 +241,19 @@ export default function OnboardingFlow() {
                 <span className={styles.connectIcon}>📄</span>
                 <div className={styles.connectInfo}>
                   <span className={styles.connectLabel}>Upload Bank Statement</span>
-                  <span className={styles.connectDesc}>CSV or Excel file from your bank</span>
-                  <span className={styles.connectBadge}>COMING SOON</span>
+                  <span className={styles.connectDesc}>Import a CSV file from your bank to get started instantly</span>
+                  <span className={styles.connectBadge}>RECOMMENDED</span>
                 </div>
               </button>
 
               <button
-                className={`${styles.connectOption} ${dataSource === "demo" ? styles.connectSelected : ""}`}
-                onClick={() => setDataSource("demo")}
+                className={`${styles.connectOption} ${dataSource === "skip" ? styles.connectSelected : ""}`}
+                onClick={() => setDataSource("skip")}
               >
-                <span className={styles.connectIcon}>✨</span>
+                <span className={styles.connectIcon}>🚀</span>
                 <div className={styles.connectInfo}>
-                  <span className={styles.connectLabel}>Use Sample Data</span>
-                  <span className={styles.connectDesc}>See Savery in action with realistic demo transactions</span>
-                  <span className={styles.connectBadge}>RECOMMENDED</span>
+                  <span className={styles.connectLabel}>Start Fresh</span>
+                  <span className={styles.connectDesc}>Skip for now — log expenses manually or import CSV later from the dashboard</span>
                 </div>
               </button>
             </div>
